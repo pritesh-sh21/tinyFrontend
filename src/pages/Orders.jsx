@@ -27,7 +27,13 @@ const Orders = () => {
         </ColumnsDirective>
         <Inject services={[Resize, Sort, ContextMenu, Filter, Page, ExcelExport, Edit, PdfExport]} />
       </GridComponent>
+
+      
     </div>
+
   );
 };
 export default Orders;
+
+
+

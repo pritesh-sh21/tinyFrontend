@@ -82,6 +82,25 @@ export const gridSessionButton = (props) => (
   </button>
 );
 
+export const peopleAttendanceStatus1 = (props) => (
+  <button
+    type="button"
+    style={{ background: "#ed9b72"  }}
+    className="text-white py-1 px-2 capitalize rounded-2xl text-md"
+  >
+    {props.Attend}
+  </button>
+);
+export const peopleAttendanceStatus2 = (props) => (
+  <button
+    type="button"
+    style={{ background: "#39c45e" }}
+    className="text-white py-1 px-2 capitalize rounded-2xl text-md"
+  >
+    {props.Benefited}
+  </button>
+);
+
 export const kanbanGrid = [
   { headerText: "To Do", keyField: "Open", allowToggle: true },
 
@@ -647,6 +666,11 @@ export const links = [
         link: "community_list",
       },
       {
+        name: "Community Details",
+        icon: <RiCommunityLine />,
+        link: "community_details",
+      },
+      {
         name: "Create",
         icon: <IoCreateOutline />,
         link: "create_community",
@@ -661,6 +685,32 @@ export const links = [
         icon: <BsCalendar4Event />,
         link: "community_sessions",
       },
+    ],
+  },
+  {
+    title: "People",
+    links: [
+      {
+        name: "AddPeople",
+        icon: <VscOrganization />,
+        link: "add_people",
+      },
+      {
+        name: "Session Details",
+        icon: <VscOrganization />,
+        link: "session_details",
+      },
+      {
+        name: "All People",
+        icon: <VscOrganization />,
+        link: "all_people",
+      },
+      {
+        name: "Create Session",
+        icon: <VscOrganization />,
+        link: "create_session",
+      },
+      
     ],
   },
   {
@@ -1118,6 +1168,147 @@ export const sessionsGrid = [
     textAlign: "Center",
     width: "120",
   },
+  // {
+  //   field: "OrderID",
+  //   headerText: "Order ID",
+  //   width: "120",
+  //   textAlign: "Center",
+  // },
+
+  
+];
+
+export const peopleGrid = [
+  
+  {
+    field: "name",
+    headerText: "Name",
+    width: "150",
+    editType: "dropdownedit",
+    textAlign: "Center",
+  },
+  {
+    field: "fatherName",
+    headerText: "Father Name",
+    width: "150",
+    textAlign: "Center",
+  },
+  {
+    field: "motherName",
+    headerText: "Mother Name",
+    // format: "C2",
+    textAlign: "Center",
+    editType: "numericedit",
+    width: "150",
+  },
+  {
+    field: "phoneNumber",
+    headerText: "Phone Number",
+    width: "150",
+    textAlign: "Center",
+    editType: "numericedit",
+  },
+  
+  {
+    headerText: "Details",
+    template: gridSessionButton ,
+    field: "OrderItems",
+    textAlign: "Center",
+    width: "100",
+    color:'#4ff075'
+  },
+ 
+
+  {
+    headerText: "Attend",
+    template: peopleAttendanceStatus1 ,
+    field: "OrderItems",
+    textAlign: "Center",
+    width: "100",
+    color:'#4932c9'
+  },
+  {
+    headerText: "Benefited",
+    template: peopleAttendanceStatus2 ,
+    field: "OrderItems",
+    textAlign: "Center",
+    width: "100",
+    color:'#4ff075'
+  },
+  // {
+  //   field: "OrderID",
+  //   headerText: "Order ID",
+  //   width: "120",
+  //   textAlign: "Center",
+  // },
+
+  
+];
+
+export const allPeopleGrid = [
+  
+  {
+    field: "name",
+    headerText: "Name",
+    width: "150",
+    editType: "dropdownedit",
+    textAlign: "Center",
+  },
+  {
+    field: "fatherName",
+    headerText: "Father Name",
+    width: "150",
+    textAlign: "Center",
+  },
+  {
+    field: "motherName",
+    headerText: "Mother Name",
+    // format: "C2",
+    textAlign: "Center",
+    editType: "numericedit",
+    width: "150",
+  },
+  {
+    field: "phoneNumber",
+    headerText: "Phone Number",
+    width: "150",
+    textAlign: "Center",
+    editType: "numericedit",
+  },
+  {
+    field: "sessionAttended",
+    headerText: "Session Attended",
+    width: "150",
+    textAlign: "Center",
+    editType: "numericedit",
+  },
+  
+  {
+    headerText: "Details",
+    template: gridSessionButton ,
+    field: "OrderItems",
+    textAlign: "Center",
+    width: "100",
+    color:'#4ff075'
+  },
+ 
+
+  // {
+  //   headerText: "Attend",
+  //   template: peopleAttendanceStatus1 ,
+  //   field: "OrderItems",
+  //   textAlign: "Center",
+  //   width: "100",
+  //   color:'#4932c9'
+  // },
+  // {
+  //   headerText: "Benefited",
+  //   template: peopleAttendanceStatus2 ,
+  //   field: "OrderItems",
+  //   textAlign: "Center",
+  //   width: "100",
+  //   color:'#4ff075'
+  // },
   // {
   //   field: "OrderID",
   //   headerText: "Order ID",
@@ -3179,6 +3370,119 @@ export const sessionsData = [
   }
 ];
 
+export const peopleData = [
+  {
+    name:'John',
+    fatherName:'Brayan',
+    motherName:'Jenny',
+    phoneNumber:6264747474,
+    Details:'Details',
+    Attend:"Yes",
+    Benefited:'Yes',
+
+  },
+  {
+    name: 'Alice',
+    fatherName: 'David',
+    motherName: 'Emily',
+    phoneNumber: 9876543210,
+    Details: 'Details',
+    Attend: 'No',
+    Benefited: 'Yes',
+  },
+  {
+    name: 'Michael',
+    fatherName: 'Robert',
+    motherName: 'Jennifer',
+    phoneNumber: 1234567890,
+    Details: 'Details',
+    Attend: 'Yes',
+    Benefited: 'No',
+  },
+  {
+    name: 'Sophia',
+    fatherName: 'Daniel',
+    motherName: 'Emma',
+    phoneNumber: 1112223333,
+    Details: 'Details',
+    Attend: 'No',
+    Benefited: 'No',
+  },
+   {
+    name: 'William',
+    fatherName: 'James',
+    motherName: 'Olivia',
+    phoneNumber: 4445556666,
+    Details: 'Details',
+    Attend: 'Yes',
+    Benefited: 'Yes',
+  },
+  {
+    name: 'Charlotte',
+    fatherName: 'Benjamin',
+    motherName: 'Ava',
+    phoneNumber: 7778889999,
+    Details: 'Details',
+    Attend: 'Yes',
+    Benefited: 'No',
+  }
+  
+];
+
+export const allPeopleData = [
+  {
+    name:'John',
+    fatherName:'Brayan',
+    motherName:'Jenny',
+    phoneNumber:6264747474,
+    Details:'Details',
+   sessionAttended:2
+
+   
+
+  },
+  {
+    name: 'Alice',
+    fatherName: 'David',
+    motherName: 'Emily',
+    phoneNumber: 9876543210,
+    Details: 'Details',
+    sessionAttended:5
+  },
+  {
+    name: 'Michael',
+    fatherName: 'Robert',
+    motherName: 'Jennifer',
+    phoneNumber: 1234567890,
+    Details: 'Details',
+    sessionAttended:4
+  },
+  {
+    name: 'Sophia',
+    fatherName: 'Daniel',
+    motherName: 'Emma',
+    phoneNumber: 1112223333,
+    Details: 'Details',
+    sessionAttended:3
+  },
+   {
+    name: 'William',
+    fatherName: 'James',
+    motherName: 'Olivia',
+    phoneNumber: 4445556666,
+    Details: 'Details',
+    sessionAttended:2
+  },
+  {
+    name: 'Charlotte',
+    fatherName: 'Benjamin',
+    motherName: 'Ava',
+    phoneNumber: 7778889999,
+    Details: 'Details',
+    sessionAttended:4
+  }
+  
+];
 
 
 

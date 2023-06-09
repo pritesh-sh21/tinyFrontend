@@ -1,7 +1,12 @@
 import React from "react";
-import { pieChartData } from "../data/dummy";
+
+import { peopleGrid, pieChartData,peopleData } from "../data/dummy";
 import { Button, ChartsHeader, Pie as PieChart } from "../components";
-import { useStateContext } from '../contexts/ContextProvider';
+// import { Header } from "../components";
+import { useStateContext } from "../contexts/ContextProvider";
+import {} from "../"
+
+//bar chart
 
 import {
   ChartComponent,
@@ -33,47 +38,44 @@ import {
   ExcelExport,
   PdfExport,
   Edit,
-} from '@syncfusion/ej2-react-grids';
+} from "@syncfusion/ej2-react-grids";
 
-import { sessionsData, contextMenuItems, sessionsGrid } from '../data/dummy';
-import { Header } from '../components';
+import { sessionsData, contextMenuItems } from "../data/dummy";
+import { Header } from "../components";
 
-const CommunityDetails = () => {
+import {  LineChart } from '../components';
+
+// import { useStateContext } from "../contexts/ContextProvider";
+
+const SessionDetails = () => {
   const { currentColor, currentMode } = useStateContext();
   const editing = { allowDeleting: true, allowEditing: true };
 
   return (
     <>
-      <div className="m-4 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header category="Page" title="Community Details" />
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-          <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl" style={{ overflowX: 'auto' ,display:'flex',flexDirection:'column',alignContent:'flex-start'}}>
-            <ChartsHeader
-              category="People Engagement With Us"
-              title=""
-            />
+      <div className="m-4 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl overflow-scroll">
+        <Header category="Page" title="Session Details" />
+        <div
+          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+        >
+          <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
+            <ChartsHeader category="Line" title="Inflation Rate" />
             <div className="w-full">
-              <PieChart
-                id="chart-pie"
-                data={pieChartData}
-                legendVisiblity
-                height="70%"
-                width="70%"
-              />
+              <LineChart />
             </div>
           </div>
 
           {/* //bar graph  */}
-          <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl" style={{ overflowX: 'auto' }}>
+          <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
             <ChartsHeader
-              category="People Benefited"
+              category="People Beneifeted"
               title="People Affected in Different Aspects"
             />
-            <div className="w-full">
+            <div className=" w-full">
               <ChartComponent
                 id="charts"
-                width="100%" // Set the desired width to cover full content
-                height="250px"
+                width="300px" // Set the desired width
+                height="300px" // Set the desired height
                 primaryXAxis={barPrimaryXAxis}
                 primaryYAxis={barPrimaryYAxis}
                 chartArea={{ border: { width: 0.2 } }}
@@ -91,6 +93,7 @@ const CommunityDetails = () => {
                   ]}
                 />
                 <SeriesCollectionDirective>
+                  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                   {barCustomSeries.map((item, index) => (
                     <SeriesDirective key={index} {...item} />
                   ))}
@@ -100,30 +103,45 @@ const CommunityDetails = () => {
           </div>
         </div>
 
-        {/* //Sessions  */}
+        {/* //People  */}
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-          <Header category="Page" title="Sessions" />
+          <Header category="Page" title="Peoples" />
+          <div style={{overflow:'scroll'}}>
           <GridComponent
             id="gridcomp"
-            dataSource={sessionsData}
+            dataSource={peopleData}
             allowPaging
             allowSorting
             allowExcelExport
             allowPdfExport
             contextMenuItems={contextMenuItems}
             editSettings={editing}
+            
           >
             <ColumnsDirective>
-              {sessionsGrid.map((item, index) => (
+              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+              {peopleGrid.map((item, index) => (
                 <ColumnDirective key={index} {...item} />
               ))}
             </ColumnsDirective>
-            <Inject services={[Resize, Sort, ContextMenu, Filter, Page, ExcelExport, Edit, PdfExport]} />
+            <Inject
+              services={[
+                Resize,
+                Sort,
+                ContextMenu,
+                Filter,
+                Page,
+                ExcelExport,
+                Edit,
+                PdfExport,
+              ]}
+            />
           </GridComponent>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default CommunityDetails;
+export default SessionDetails;

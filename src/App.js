@@ -14,6 +14,10 @@ import CommunitySessions from './pages/CommunitySessions';
 import Communities from './pages/Communities';
 import CommunityList from './pages/CommunityList';
 import CommunityDetails from './pages/CommunityDetails';
+import AddPeople from './pages/AddPeople';
+import SessionDetails from './pages/SessionDetails';
+import AllPeople from './pages/AllPeople';
+import CreateSession from './pages/CreateSession';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -100,6 +104,10 @@ const App = () => {
                 <Route exact path="/community_sessions" element={<CommunitySessions />} />
                 <Route exact path="/community_list" element={<CommunityList />} />
                 <Route exact path="/community_details" element={<CommunityDetails />} />
+                <Route exact path="/add_people" element={<AddPeople />} />
+                <Route exact path="/session_details" element={<SessionDetails />} />
+                <Route exact path="/all_people" element={<AllPeople />} />
+                <Route exact path="/create_session" element={<CreateSession />} />
 
 
               </Routes>
