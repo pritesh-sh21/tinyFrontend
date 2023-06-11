@@ -1237,8 +1237,6 @@ export const peopleGrid = [
     width: "120",
     color: '#4ff075'
   },
-
-
   {
     headerText: "Attendance",
     field: "Attendance",
@@ -1253,8 +1251,13 @@ export const peopleGrid = [
     width: "120",
     color: '#4ff075'
   },
-
-
+  {
+    headerText: "Details",
+    field: "Details",
+    textAlign: "Center",
+    width: "120",
+    color: '#4932c9'
+  },
 
 ];
 

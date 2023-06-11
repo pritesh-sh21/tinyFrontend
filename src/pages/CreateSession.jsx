@@ -11,21 +11,27 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { isAuthenticated } from "../auth/helper/index";
 
 const CreateSession = () => {
   const { currentColor, currentMode } = useStateContext();
   const [redirect, setRedirect] = useState(false);
   const { id } = useParams();
+  const User = isAuthenticated().user;
 
   const createSession = async (people) => {
-    console.log(people);
+    const userDetails = {
+      ...people,
+      user: User
+    };
+    console.log(userDetails);
     return await fetch(`http://localhost:9000/api/session/create/${id}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
       },
-      body: JSON.stringify(people),
+      body: JSON.stringify(userDetails),
     })
       .then((response) => {
         if (response.ok) {
@@ -92,8 +98,8 @@ const CreateSession = () => {
       })
       .catch(console.log("Error in Creating People"));
   };
-  if(redirect){
-    return <Navigate to={`/sessions/${id}`}/>
+  if (redirect) {
+    return <Navigate to={`/sessions/${id}`} />
   }
   return (
     <div className="flex justify-center items-start min-h-screen">
@@ -199,7 +205,7 @@ const CreateSession = () => {
                         onChange={handelChange("category")}
                         checked={category === "health"}
                       />
-                      Male
+                      Health
                     </label>
                     <label className="mr-2">
                       <input

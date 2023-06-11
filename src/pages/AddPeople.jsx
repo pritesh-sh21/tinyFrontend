@@ -3,7 +3,7 @@ import React from "react";
 import { Header } from "../components";
 import { Button } from "../components";
 import { Navigate, useParams } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { useStateContext } from "../contexts/ContextProvider";
 
@@ -56,6 +56,8 @@ const AddPeople = () => {
     income: 0,
     benefited: "",
     Attendance: 0,
+    diseaseStatus:"",
+    lastCheckup:null,
   });
 
 
@@ -78,6 +80,8 @@ const AddPeople = () => {
     elderlyFamilyMembers,
     benefited,
     Attendance,
+    diseaseStatus,
+    lastCheckup,
   } = values;
 
   const handelChange = (name) => (event) => {
@@ -109,6 +113,9 @@ const AddPeople = () => {
       elderlyFamilyMembers,
       benefited,
       Attendance,
+      diseaseStatus,
+      lastCheckup,
+
     })
       .then((data) => {
         if (data.error) {
@@ -135,6 +142,8 @@ const AddPeople = () => {
             income: 0,
             benefited: "",
             Attendance: 0,
+            diseaseStatus:"",
+            lastCheckup:null,
           });
         }
       })
@@ -446,6 +455,65 @@ const AddPeople = () => {
                   />
                 </div>
 
+                <div className="mb-4">
+                  <label
+                    className="block text-left text-gray-700 text-sm font-bold mb-2"
+                    htmlFor="gender"
+                  >
+                    Disease Status
+                  </label>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      justifyContent: "flex-start",
+                      alignContent: "space-around",
+                    }}
+                  >
+                    <label className="mr-2">
+                      <input
+                        className="mr-2 leading-tight"
+                        type="radio"
+                        name="diseaseStatus"
+                        value="major"
+                        onChange={handelChange("diseaseStatus")}
+                        checked={diseaseStatus === "major"}
+                      />
+                      Major
+                    </label>
+                    <label className="mr-2">
+                      <input
+                        className="mr-2 leading-tight"
+                        type="radio"
+                        name="diseaseStatus"
+                        value="minor"
+                        onChange={handelChange("diseaseStatus")}
+                        checked={diseaseStatus === "minor"}
+                      />
+                      Minor
+                    </label>
+                  </div>
+                </div>
+                
+                <div className="mb-4">
+                  <label
+                    className="block text-left  text-gray-700 text-sm font-bold mb-2"
+                    htmlFor="username"
+                  >
+                    Last Checkup
+                  </label>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DatePicker
+                        id="username"
+                        label="Last Checkup"
+                        value={values.lastCheckup}
+                        onChange={handleDateChange("lastCheckup")}
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </div>
                 {/* Self Education */}
                 <div className="mb-4">
                   <label

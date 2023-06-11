@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { peopleGrid, pieChartData, peopleData } from "../data/dummy";
+import { pieChartData, peopleData } from "../data/dummy";
+import { peopleGrid} from './demo3'
 import { Button, ChartsHeader, Pie as PieChart } from "../components";
 // import { Header } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -80,19 +81,19 @@ const SessionDetails = () => {
   }, [])
   let grid;
   const navigate = useNavigate();
-  const rowSelected = () => {
-    console.log("dnkk");
-    if (grid) {
-      /** Get the selected row indexes */
-      const selectedrowindex = grid.getSelectedRowIndexes();
-      /** Get the selected records. */
-      const selectedrecords = grid.getSelectedRecords();
-      // console.log(selectedrecords);
-      // alert(selectedrowindex + " : " + JSON.stringify(selectedrecords));
-      // const linkid=sessionList[selectedrowindex]._id;
-      navigate(`/community/session_details/people/${selectedrecords[0]._id}`);
-    }
-  };
+  // const rowSelected = () => {
+  //   console.log("dnkk");
+  //   if (grid) {
+  //     /** Get the selected row indexes */
+  //     const selectedrowindex = grid.getSelectedRowIndexes();
+  //     /** Get the selected records. */
+  //     const selectedrecords = grid.getSelectedRecords();
+  //     // console.log(selectedrecords);
+  //     alert(selectedrowindex + " : " + JSON.stringify(selectedrecords));
+  //     // const linkid=sessionList[selectedrowindex]._id;
+  //     navigate(`/community/session_details/people/${selectedrecords[0]._id}`);
+  //   }
+  // };
 
   return (
     <>
@@ -172,7 +173,7 @@ const SessionDetails = () => {
               allowPdfExport
               contextMenuItems={contextMenuItems}
               editSettings={editing}
-              rowSelected={rowSelected} ref={g => grid = g}
+              // rowSelected={rowSelected} ref={g => grid = g}
 
             >
               <ColumnsDirective>

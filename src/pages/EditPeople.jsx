@@ -45,6 +45,8 @@ const EditPeople = () => {
                     disease: peopleResponse.disease,
                     benefited: peopleResponse.benefited,
                     Attendance: peopleResponse.Attendance,
+                    diseaseStatus: peopleResponse.diseaseStatus,
+                    lastCheckup: null,
                 });
                 setSessionId(sessionResponse._id)
                 // console.log(sessionResponse); // Log the sessionResponse
@@ -97,6 +99,8 @@ const EditPeople = () => {
         income: 0,
         benefited: "",
         Attendance: 0,
+        diseaseStatus: "",
+        lastCheckup: null,
     });
 
 
@@ -119,6 +123,8 @@ const EditPeople = () => {
         elderlyFamilyMembers,
         benefited,
         Attendance,
+        diseaseStatus,
+        lastCheckup,
     } = values;
 
     const handelChange = (name) => (event) => {
@@ -150,6 +156,8 @@ const EditPeople = () => {
             elderlyFamilyMembers,
             benefited,
             Attendance,
+            diseaseStatus,
+            lastCheckup,
         })
             .then((data) => {
                 if (data.error) {
@@ -176,6 +184,8 @@ const EditPeople = () => {
                         income: 0,
                         benefited: "",
                         Attendance: 0,
+                        diseaseStatus: "",
+                        lastCheckup: null,
                     });
                 }
             })
@@ -186,9 +196,9 @@ const EditPeople = () => {
     }
     return (
         <div className="p-2">
-        <div>
-            <PeopleDetails/>
-        </div>
+            <div>
+                <PeopleDetails />
+            </div>
             <div className="flex justify-center items-start min-h-screen">
                 <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-4 md:p-8 bg-white rounded-3xl">
                     <Header category={`${name}`} title="Edit People" />
@@ -491,6 +501,65 @@ const EditPeople = () => {
                                         />
                                     </div>
 
+                                    <div className="mb-4">
+                                        <label
+                                            className="block text-left text-gray-700 text-sm font-bold mb-2"
+                                            htmlFor="gender"
+                                        >
+                                            Disease Status
+                                        </label>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                flexWrap: "wrap",
+                                                justifyContent: "flex-start",
+                                                alignContent: "space-around",
+                                            }}
+                                        >
+                                            <label className="mr-2">
+                                                <input
+                                                    className="mr-2 leading-tight"
+                                                    type="radio"
+                                                    name="diseaseStatus"
+                                                    value="major"
+                                                    onChange={handelChange("diseaseStatus")}
+                                                    checked={diseaseStatus === "major"}
+                                                />
+                                                Major
+                                            </label>
+                                            <label className="mr-2">
+                                                <input
+                                                    className="mr-2 leading-tight"
+                                                    type="radio"
+                                                    name="diseaseStatus"
+                                                    value="minor"
+                                                    onChange={handelChange("diseaseStatus")}
+                                                    checked={diseaseStatus === "minor"}
+                                                />
+                                                Minor
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <label
+                                            className="block text-left  text-gray-700 text-sm font-bold mb-2"
+                                            htmlFor="username"
+                                        >
+                                            Last Checkup
+                                        </label>
+                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                            <DemoContainer components={["DatePicker"]}>
+                                                <DatePicker
+                                                    id="username"
+                                                    label="Last Checkup"
+                                                    value={values.lastCheckup}
+                                                    onChange={handleDateChange("lastCheckup")}
+                                                />
+                                            </DemoContainer>
+                                        </LocalizationProvider>
+                                    </div>
                                     {/* Self Education */}
                                     <div className="mb-4">
                                         <label

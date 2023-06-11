@@ -41,7 +41,11 @@ const UserDetailCard = () => {
             <div className="w-full p-5 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
                 <div className="flex flex-col items-center pb-10">
-
+                    <img
+                        className="w-24 h-24 mb-3 rounded-full shadow-lg"
+                        src="https://avatars3.githubusercontent.com/u/11801238?v=4"
+                        alt="Bonnie image"
+                    />
                     <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{people.name}</h5>
 
                     <hr className="w-4/5 h-0.2 bg-white m-5"></hr>
@@ -58,12 +62,7 @@ const UserDetailCard = () => {
                             <span className="text-lg font-thin text-gray-500 dark:text-gray-400 dark:text-white">{people.age}</span>
                         </span>
                     </div>
-                    <div className='m-2'>
-                        <span className="flex flex-row text-lg font-medium text-gray-900 dark:text-gray-400">
-                            <h5 className="font-medium text-lg text-gray-900 dark:text-white mr-3">Number of Children : </h5>
-                            <span className="text-lg font-thin text-gray-500 dark:text-gray-400 dark:text-white">{people.dependentChildren}</span>
-                        </span>
-                    </div>
+                
                     <div className='m-2'>
                         <span className="flex flex-row text-lg font-medium text-gray-900 dark:text-gray-400">
                             <h5 className="font-medium text-lg text-gray-900 dark:text-white mr-3">Benefited :</h5>
@@ -78,6 +77,19 @@ const UserDetailCard = () => {
                     </div>
                     <div className='m-2'>
                         <span className="flex flex-row text-lg font-medium text-gray-900 dark:text-gray-400">
+                            <h5 className="font-medium text-lg text-gray-900 dark:text-white mr-3">Disease Status: </h5>
+                            <span className="text-lg font-thin text-gray-500 dark:text-gray-400 dark:text-white">{people.diseaseStatus}</span>
+                        </span>
+                    </div>
+                    <div className='m-2'>
+                        <span className="flex flex-row text-lg font-medium text-gray-900 dark:text-gray-400">
+                            <h5 className="font-medium text-lg text-gray-900 dark:text-white mr-3">Last Checkup: </h5>
+                            <span className="text-lg font-thin text-gray-500 dark:text-gray-400 dark:text-white">{people.lastCheckup}</span>
+                        </span>
+                    </div>
+                    
+                    <div className='m-2'>
+                        <span className="flex flex-row text-lg font-medium text-gray-900 dark:text-gray-400">
                             <h5 className="font-medium text-lg text-gray-900 dark:text-white mr-3">Sessions Attended: </h5>
                             <span className="text-lg font-thin text-gray-500 dark:text-gray-400 dark:text-white">{length}</span>
                         </span>
@@ -88,7 +100,7 @@ const UserDetailCard = () => {
                             <span className="text-lg font-thin text-gray-500 dark:text-gray-400 dark:text-white">{people.employed ? 'Yes' : 'No'}</span>
                         </span>
                     </div>
-                    
+
                     <div className="flex mt-4 space-x-3 md:mt-6">
                         {/* <a
             href="#"
