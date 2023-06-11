@@ -14,15 +14,24 @@ import CommunitySessions from './pages/CommunitySessions';
 import Communities from './pages/Communities';
 import CommunityList from './pages/CommunityList';
 import CommunityDetails from './pages/CommunityDetails';
-import AddPeople from './pages/AddPeople';
-import SessionDetails from './pages/SessionDetails';
-import AllPeople from './pages/AllPeople';
+import Session from './pages/Session'
+import AddPeople from './pages/AddPeople'
+import EditCommunity from './pages/EditCommunity'
 import CreateSession from './pages/CreateSession';
+import SessionDetails from './pages/SessionDetails'
+import EditPeople from './pages/EditPeople'
+import VolReq from './pages/VolReq';
+import VolList from './pages/VolList';
+import Signin from './pages/Users/Signin';
+import Signup from './pages/Users/Signup';
+import { isAuthenticated } from '../src/auth/helper/index';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+  const auth = isAuthenticated();
 
   useEffect(() => {
+
     const currentThemeColor = localStorage.getItem('colorMode');
     const currentThemeMode = localStorage.getItem('themeMode');
     if (currentThemeColor && currentThemeMode) {
@@ -32,6 +41,7 @@ const App = () => {
   }, []);
 
   return (
+
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
@@ -79,7 +89,8 @@ const App = () => {
                 <Route exact path="/tinymiracle" element={(<TinyMiracle />)} />
 
                 {/* pages  */}
-                <Route exact path="/orders" element={<Orders />} />
+                {auth.user.role === 1 && <Route exact path="/orders" element={<Orders />} />}
+
                 <Route exact path="/employees" element={<Employees />} />
                 <Route exact path="/customers" element={<Customers />} />
 
@@ -91,7 +102,7 @@ const App = () => {
 
                 {/* charts  */}
                 <Route exact path="/area" element={<Area />} />
-                <Route exact  path="/line" element={<Line />} />
+                <Route exact path="/line" element={<Line />} />
                 <Route exact path="/bar" element={<Bar />} />
                 <Route exact path="/pie" element={<Pie />} />
                 <Route exact path="/financial" element={<Financial />} />
@@ -101,14 +112,18 @@ const App = () => {
                 <Route exact path="/community" element={<Communities />} />
                 <Route exact path="/create_community" element={<CreateCommunity />} />
                 <Route exact path="/community_status" element={<CommunityStatus />} />
-                <Route exact path="/community_sessions" element={<CommunitySessions />} />
                 <Route exact path="/community_list" element={<CommunityList />} />
                 <Route exact path="/community_details" element={<CommunityDetails />} />
-                <Route exact path="/add_people" element={<AddPeople />} />
-                <Route exact path="/session_details" element={<SessionDetails />} />
-                <Route exact path="/all_people" element={<AllPeople />} />
-                <Route exact path="/create_session" element={<CreateSession />} />
-
+                <Route exact path="/sessions/:id" element={<Session />} />
+                <Route exact path="/add_people/:id" element={<AddPeople />} />
+                <Route exact path="/community/:id" element={<EditCommunity />} />
+                <Route exact path="/create_session/:id" element={<CreateSession />} />
+                <Route exact path="/community/session_details/:id" element={<SessionDetails />} />
+                <Route exact path="community/session_details/people/:id" element={<EditPeople />} />
+                <Route exact path="/vol_req" element={<VolReq />} />
+                <Route exact path="/vol_list" element={<VolList />} />
+                <Route exact path="/signin" element={<Signin />} />
+                <Route exact path="/signup" element={<Signup />} />
 
               </Routes>
             </div>

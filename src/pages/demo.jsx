@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AiOutlineCalendar,
   AiOutlineShoppingCart,
@@ -23,6 +23,8 @@ import {
   BsShield,
   BsChatLeft,
 } from "react-icons/bs";
+
+import { Link, useNavigate } from 'react-router-dom';
 
 import { BsGraphUp, BsCalendar4Event } from "react-icons/bs";
 
@@ -49,6 +51,9 @@ import product5 from "./product5.jpg";
 import product6 from "./product6.jpg";
 import product7 from "./product7.jpg";
 import product8 from "./product8.jpg";
+
+import { useState } from "react";
+
 
 export const gridOrderImage = (props) => (
   <div>
@@ -81,11 +86,59 @@ export const gridSessionButton = (props) => (
     {props.Details}
   </button>
 );
+export const volReqButton = (props) => {
+  const [bg, setBg] = useState('#eb4034');
+  const [buttonText, setButtonText] = useState(props.btnText);
+  const navigate = useNavigate();
+  
+
+  const handleClick = () => {
+    setBg('#46f249');
+    setButtonText('Approved');
+  };
+
+  return (
+    <button
+      type="button"
+      style={{ background: bg }}
+      className="text-white py-1 px-2 capitalize rounded-2xl text-md"
+      onClick={handleClick}
+    >
+      {buttonText}
+    </button>
+  );
+};
+export const volListButton = (props) => {
+  const [bg, setBg] = useState('#c7736b');
+  const [buttonText, setButtonText] = useState(props.btnText);
+  const navigate = useNavigate();
+  
+
+  const handleClick = () => {
+    setBg('#bf1606');
+    setButtonText('Blocked');
+  };
+
+  return (
+    <button
+      type="button"
+      style={{ background: bg }}
+      className="text-white py-1 px-2 capitalize rounded-2xl text-md"
+      onClick={handleClick}
+    >
+      {buttonText}
+    </button>
+
+ 
+  );
+};
+
+
 
 export const peopleAttendanceStatus1 = (props) => (
   <button
     type="button"
-    style={{ background: "#ed9b72" }}
+    style={{ background: "#ed9b72"  }}
     className="text-white py-1 px-2 capitalize rounded-2xl text-md"
   >
     {props.Attend}
@@ -201,6 +254,7 @@ const customerGridStatus = (props) => (
     <p>{props.Status}</p>
   </div>
 );
+
 export const areaPrimaryXAxis = {
   valueType: "DateTime",
   labelFormat: "y",
@@ -442,7 +496,7 @@ export const colorMappingData = [
     { x: "Oct", y: 32.1 },
     { x: "Nov", y: 36.5 },
     { x: "Dec", y: 39.9 },
-
+   
   ],
   ["#FFFF99"],
   ["#FFA500"],
@@ -452,11 +506,10 @@ export const colorMappingData = [
 
 export const rangeColorMapping = [
   {
-    label: "1°C to 10°C",
-    start: "1",
-    end: "10",
-    colors: colorMappingData[1]
-  },
+     label: "1°C to 10°C",
+     start: "1",
+     end: "10", 
+     colors: colorMappingData[1] },
 
   {
     label: "11°C to 20°C",
@@ -583,6 +636,56 @@ export const customersGrid = [
   },
 ];
 
+
+export const volReqGrid = [
+  
+  {
+    headerText: "Name",
+    field: "Name",
+    width: "150",
+    textAlign: "Center",
+  },
+  {
+    field: "Email",
+    headerText: "Email",
+    width: "150",
+    textAlign: "Center",
+  },
+  
+  {
+    field: "Approve",
+    headerText: "Approve",
+    width: "130",
+    textAlign: "Center",
+    template: volReqButton,
+  }
+];
+
+export const volListGrid = [
+  
+  {
+    headerText: "Name",
+    field: "Name",
+    width: "150",
+    textAlign: "Center",
+  },
+  {
+    field: "Email",
+    headerText: "Email",
+    width: "150",
+    textAlign: "Center",
+  },
+  
+  {
+    field: "Approve",
+    headerText: "Block",
+    width: "130",
+    textAlign: "Center",
+    template: volListButton,
+  }
+];
+
+
 export const employeesGrid = [
   {
     headerText: "Employee",
@@ -652,12 +755,6 @@ export const links = [
         link: "employees",
       },
       {
-        name: "Volunteers",
-        icon: <RiContactsLine />,
-        link: "vol_list",
-      },
-
-      {
         name: "customers",
         icon: <RiContactsLine />,
         link: "customers",
@@ -693,15 +790,26 @@ export const links = [
         link: "community_sessions",
       },
       {
-        name: "SignIn",
+        name: "Requests",
         icon: <BsCalendar4Event />,
-        link: "sign_in"
+        link: "vol_req",
+      },
+
+      {
+        name: "Volunteers",
+        icon: <BsCalendar4Event />,
+        link: "vol_list",
       },
       {
-        name: "SignOut",
+        name: "Signup",
         icon: <BsCalendar4Event />,
-        link: "sign_out"
-      }
+        link: "signup",
+      },
+      {
+        name: "Signin",
+        icon: <BsCalendar4Event />,
+        link: "signin",
+      },
     ],
   },
   {
@@ -727,13 +835,7 @@ export const links = [
         icon: <VscOrganization />,
         link: "create_session",
       },
-      {
-        name: "Requests",
-        icon: <VscOrganization />,
-        link: "vol_req",
-      },
-
-
+      
     ],
   },
   {
@@ -1088,21 +1190,22 @@ export const userProfileData = [
     desc: "Account Settings",
     iconColor: "#03C9D7",
     iconBg: "#E5FAFB",
+    link:"my_profile"
   },
-  {
-    icon: <BsShield />,
-    title: "My Inbox",
-    desc: "Messages & Emails",
-    iconColor: "rgb(0, 194, 146)",
-    iconBg: "rgb(235, 250, 242)",
-  },
-  {
-    icon: <FiCreditCard />,
-    title: "My Tasks",
-    desc: "To-do and Daily Tasks",
-    iconColor: "rgb(255, 244, 229)",
-    iconBg: "rgb(254, 201, 15)",
-  },
+  // {
+  //   icon: <BsShield />,
+  //   title: "My Inbox",
+  //   desc: "Messages & Emails",
+  //   iconColor: "rgb(0, 194, 146)",
+  //   iconBg: "rgb(235, 250, 242)",
+  // },
+  // {
+  //   icon: <FiCreditCard />,
+  //   title: "My Tasks",
+  //   desc: "To-do and Daily Tasks",
+  //   iconColor: "rgb(255, 244, 229)",
+  //   iconBg: "rgb(254, 201, 15)",
+  // },
 ];
 
 export const ordersGrid = [
@@ -1156,7 +1259,7 @@ export const ordersGrid = [
 ];
 
 export const sessionsGrid = [
-
+  
   {
     field: "Session",
     headerText: "Session No.",
@@ -1198,15 +1301,16 @@ export const sessionsGrid = [
   //   textAlign: "Center",
   // },
 
-
+  
 ];
 
 export const peopleGrid = [
-
+  
   {
     field: "name",
     headerText: "Name",
     width: "150",
+    editType: "dropdownedit",
     textAlign: "Center",
   },
   {
@@ -1228,38 +1332,47 @@ export const peopleGrid = [
     headerText: "Phone Number",
     width: "150",
     textAlign: "Center",
+    editType: "numericedit",
   },
+  
+  {
+    headerText: "Details",
+    template: gridSessionButton ,
+    field: "OrderItems",
+    textAlign: "Center",
+    width: "100",
+    color:'#4ff075'
+  },
+ 
 
   {
-    headerText: "Gender",
-    field: "gender",
+    headerText: "Attend",
+    template: peopleAttendanceStatus1 ,
+    field: "OrderItems",
     textAlign: "Center",
-    width: "120",
-    color: '#4ff075'
-  },
-
-
-  {
-    headerText: "Attendance",
-    field: "Attendance",
-    textAlign: "Center",
-    width: "120",
-    color: '#4932c9'
+    width: "100",
+    color:'#4932c9'
   },
   {
     headerText: "Benefited",
-    field: "benefited",
+    template: peopleAttendanceStatus2 ,
+    field: "OrderItems",
     textAlign: "Center",
-    width: "120",
-    color: '#4ff075'
+    width: "100",
+    color:'#4ff075'
   },
+  // {
+  //   field: "OrderID",
+  //   headerText: "Order ID",
+  //   width: "120",
+  //   textAlign: "Center",
+  // },
 
-
-
+  
 ];
 
 export const allPeopleGrid = [
-
+  
   {
     field: "name",
     headerText: "Name",
@@ -1295,30 +1408,41 @@ export const allPeopleGrid = [
     textAlign: "Center",
     editType: "numericedit",
   },
-
+  
   {
-    headerText: "Gender",
-    field: "Gender",
+    headerText: "Details",
+    template: gridSessionButton ,
+    field: "OrderItems",
     textAlign: "Center",
     width: "100",
-    color: '#4ff075'
+    color:'#4ff075'
   },
-  {
-    headerText: "Benefitted",
-    field: "Benefitted",
-    textAlign: "Center",
-    width: "100",
-    color: '#4ff075'
-  },
-  {
-    headerText: "Attendance",
-    field: "Attendance",
-    textAlign: "Center",
-    width: "100",
-    color: '#4ff075'
-  },
+ 
 
+  // {
+  //   headerText: "Attend",
+  //   template: peopleAttendanceStatus1 ,
+  //   field: "OrderItems",
+  //   textAlign: "Center",
+  //   width: "100",
+  //   color:'#4932c9'
+  // },
+  // {
+  //   headerText: "Benefited",
+  //   template: peopleAttendanceStatus2 ,
+  //   field: "OrderItems",
+  //   textAlign: "Center",
+  //   width: "100",
+  //   color:'#4ff075'
+  // },
+  // {
+  //   field: "OrderID",
+  //   headerText: "Order ID",
+  //   width: "120",
+  //   textAlign: "Center",
+  // },
 
+  
 ];
 
 export const CommunityGrid = [
@@ -1886,6 +2010,41 @@ export const customersData = [
     Location: "USA",
   },
 ];
+
+
+export const volReqData=[
+  {
+    id: 1,
+    Name: "Sachin Mishra",
+    Email: "sachin@gmail.com",
+    btnText: "Approve",
+  },
+  {
+    id: 2,
+    Name: "Pritesh Mishra",
+    Email: "pritesh@gmail.com",
+    btnText: "Approve",
+  },
+
+]
+
+
+export const volListData=[
+  {
+    id: 1,
+    Name: "Sachin Mishra",
+    Email: "sachin@gmail.com",
+    btnText: "Block",
+  },
+  {
+    id: 2,
+    Name: "Pritesh Mishra",
+    Email: "pritesh@gmail.com",
+    btnText: "Block",
+  },
+
+]
+
 
 export const employeesData = [
   {
@@ -3374,13 +3533,13 @@ export const sessionsData = [
 
 export const peopleData = [
   {
-    name: 'John',
-    fatherName: 'Brayan',
-    motherName: 'Jenny',
-    phoneNumber: 6264747474,
-    Details: 'Details',
-    Attend: "Yes",
-    Benefited: 'Yes',
+    name:'John',
+    fatherName:'Brayan',
+    motherName:'Jenny',
+    phoneNumber:6264747474,
+    Details:'Details',
+    Attend:"Yes",
+    Benefited:'Yes',
 
   },
   {
@@ -3410,7 +3569,7 @@ export const peopleData = [
     Attend: 'No',
     Benefited: 'No',
   },
-  {
+   {
     name: 'William',
     fatherName: 'James',
     motherName: 'Olivia',
@@ -3428,19 +3587,19 @@ export const peopleData = [
     Attend: 'Yes',
     Benefited: 'No',
   }
-
+  
 ];
 
 export const allPeopleData = [
   {
-    name: 'John',
-    fatherName: 'Brayan',
-    motherName: 'Jenny',
-    phoneNumber: 6264747474,
-    Details: 'Details',
-    sessionAttended: 2
+    name:'John',
+    fatherName:'Brayan',
+    motherName:'Jenny',
+    phoneNumber:6264747474,
+    Details:'Details',
+   sessionAttended:2
 
-
+   
 
   },
   {
@@ -3449,7 +3608,7 @@ export const allPeopleData = [
     motherName: 'Emily',
     phoneNumber: 9876543210,
     Details: 'Details',
-    sessionAttended: 5
+    sessionAttended:5
   },
   {
     name: 'Michael',
@@ -3457,7 +3616,7 @@ export const allPeopleData = [
     motherName: 'Jennifer',
     phoneNumber: 1234567890,
     Details: 'Details',
-    sessionAttended: 4
+    sessionAttended:4
   },
   {
     name: 'Sophia',
@@ -3465,15 +3624,15 @@ export const allPeopleData = [
     motherName: 'Emma',
     phoneNumber: 1112223333,
     Details: 'Details',
-    sessionAttended: 3
+    sessionAttended:3
   },
-  {
+   {
     name: 'William',
     fatherName: 'James',
     motherName: 'Olivia',
     phoneNumber: 4445556666,
     Details: 'Details',
-    sessionAttended: 2
+    sessionAttended:2
   },
   {
     name: 'Charlotte',
@@ -3481,9 +3640,9 @@ export const allPeopleData = [
     motherName: 'Ava',
     phoneNumber: 7778889999,
     Details: 'Details',
-    sessionAttended: 4
+    sessionAttended:4
   }
-
+  
 ];
 
 

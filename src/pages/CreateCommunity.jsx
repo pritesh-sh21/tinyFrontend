@@ -6,12 +6,12 @@ import { Button } from "../components";
 import { useState } from "react";
 
 import { useStateContext } from "../contexts/ContextProvider";
+import { Navigate } from "react-router-dom";
 
 const CreateCommunity = () => {
   const { currentColor, currentMode } = useStateContext();
-
+  const [redirect,setRedirect]=useState(false);
   const   createCategory = async (community) => {
-    console.log(community);
     return  await fetch(`http://localhost:9000/api/community/create`, {
       method: "POST",
       headers: {
@@ -21,11 +21,15 @@ const CreateCommunity = () => {
       body: JSON.stringify(community),
     })
       .then((response) => {
+        if(response.ok){
+          setRedirect(true);
+        }
         return response.json();
       })
       .catch((err) => console.log(err));
+     
   };
-
+  
   const [values, setValues] = useState({
     name: "",
     state: "",
@@ -40,7 +44,7 @@ const CreateCommunity = () => {
   };
 
   const onSubmit = (event) => {
-    console.log(event);
+    // console.log(event);
     event.preventDefault();
     createCategory({ name, state, district, description })
       .then((data) => {
@@ -58,14 +62,16 @@ const CreateCommunity = () => {
       })
       .catch(console.log("Error in Signup"));
   };
-
+  if(redirect){
+    return <Navigate to={'/community_list'}/>
+  }
   return (
     <div className="flex justify-center items-start min-h-screen">
       <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-4 md:p-8 bg-white rounded-3xl">
         <Header category="App" title="Create Community" />
         <div className="text-center">
           <div className="w-full">
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={onSubmit}>
               <div className="grid grid-cols-1 gap-6">
                 <div className="mb-4">
                   <label

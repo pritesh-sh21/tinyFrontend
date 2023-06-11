@@ -2,7 +2,7 @@ import React from "react";
 
 import { Header } from "../components";
 import { Button } from "../components";
-
+import { Navigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 import { useStateContext } from "../contexts/ContextProvider";
@@ -14,10 +14,12 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const CreateSession = () => {
   const { currentColor, currentMode } = useStateContext();
+  const [redirect, setRedirect] = useState(false);
+  const { id } = useParams();
 
   const createSession = async (people) => {
     console.log(people);
-    return await fetch(`http://localhost:9000/api/session/create`, {
+    return await fetch(`http://localhost:9000/api/session/create/${id}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -26,27 +28,30 @@ const CreateSession = () => {
       body: JSON.stringify(people),
     })
       .then((response) => {
+        if (response.ok) {
+          setRedirect(true);
+        }
         return response.json();
       })
       .catch((err) => console.log(err));
   };
 
   const [values, setValues] = useState({
-    name:'',
-    description:'',
-    date:null,
-    category:'',
-    district:'',
-    state:''
+    name: '',
+    description: '',
+    date: null,
+    category: '',
+    district: '',
+    state: ''
   });
 
   const {
     name,
-      description,
-      date,
-      category,
-      district,
-      state,
+    description,
+    date,
+    category,
+    district,
+    state,
   } = values;
 
   const handelChange = (name) => (event) => {
@@ -75,19 +80,21 @@ const CreateSession = () => {
         } else {
           setValues({
             ...values,
-            name:'',
-            description:'',
-            date:null,
-            category:'',
-            district:'',
-            state:''
+            name: '',
+            description: '',
+            date: null,
+            category: '',
+            district: '',
+            state: ''
 
           });
         }
       })
       .catch(console.log("Error in Creating People"));
   };
-
+  if(redirect){
+    return <Navigate to={`/sessions/${id}`}/>
+  }
   return (
     <div className="flex justify-center items-start min-h-screen">
       <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-4 md:p-8 bg-white rounded-3xl">
@@ -236,7 +243,7 @@ const CreateSession = () => {
                         onChange={handelChange("category")}
                         checked={category === "welfareSchemes"}
                       />
-                     Welfare Schemes
+                      Welfare Schemes
                     </label>
                     <label className="mr-2">
                       <input
@@ -270,8 +277,8 @@ const CreateSession = () => {
                       />
                     </DemoContainer>
                   </LocalizationProvider>
-                </div>     
- 
+                </div>
+
                 <div className="flex items-center justify-between">
                   <div onClick={onSubmit}>
                     <Button

@@ -2,8 +2,8 @@ import React from "react";
 
 import { Header } from "../components";
 import { Button } from "../components";
-
-import { useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import { useState,useEffect } from "react";
 
 import { useStateContext } from "../contexts/ContextProvider";
 
@@ -14,10 +14,12 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const AddPeople = () => {
   const { currentColor, currentMode } = useStateContext();
+  const [redirect, setRedirect] = useState(false);
+  const { id } = useParams();
 
   const createPeople = async (people) => {
     console.log(people);
-    return await fetch(`http://localhost:9000/api/people/create`, {
+    return await fetch(`http://localhost:9000/api/people/create/${id}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -26,6 +28,9 @@ const AddPeople = () => {
       body: JSON.stringify(people),
     })
       .then((response) => {
+        if (response.ok) {
+          setRedirect(true);
+        }
         return response.json();
       })
       .catch((err) => console.log(err));
@@ -49,7 +54,10 @@ const AddPeople = () => {
     dependentChildren: 0,
     elderlyFamilyMembers: 0,
     income: 0,
+    benefited: "",
+    Attendance: 0,
   });
+
 
   const {
     name,
@@ -68,6 +76,8 @@ const AddPeople = () => {
     dependentChildren,
     welfareSchemes,
     elderlyFamilyMembers,
+    benefited,
+    Attendance,
   } = values;
 
   const handelChange = (name) => (event) => {
@@ -97,6 +107,8 @@ const AddPeople = () => {
       dependentChildren,
       welfareSchemes,
       elderlyFamilyMembers,
+      benefited,
+      Attendance,
     })
       .then((data) => {
         if (data.error) {
@@ -121,21 +133,119 @@ const AddPeople = () => {
             dependentChildren: 0,
             elderlyFamilyMembers: 0,
             income: 0,
+            benefited: "",
+            Attendance: 0,
           });
         }
       })
       .catch(console.log("Error in Creating People"));
   };
-
+  if (redirect) {
+    return <Navigate to={`/community/session_details/${id}`} />
+  }
   return (
     <div className="flex justify-center items-start min-h-screen">
       <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-4 md:p-8 bg-white rounded-3xl">
-        <Header category="App" title="Add People" />
+        <Header category="People" title="Add People" />
         <div className="text-center">
           <div className="w-full">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <div className="grid grid-cols-1 gap-6">
                 {/* //name  */}
+                {/* Welfare Scheme */}
+
+                <div className="mb-4">
+                  <label
+                    className="block text-left text-gray-700 text-sm font-bold mb-2"
+                    htmlFor="gender"
+                  >
+                    benefited
+                  </label>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      justifyContent: "flex-start",
+                      alignContent: "space-around",
+                    }}
+                  >
+                    <label className="mr-2">
+                      <input
+                        className="mr-2 leading-tight"
+                        type="radio"
+                        name="benefited"
+                        value="Yes"
+                        onChange={handelChange("benefited")}
+                        checked={benefited === "Yes"}
+                      />
+                      Yes
+                    </label>
+                    <label className="mr-2">
+                      <input
+                        className="mr-2 leading-tight"
+                        type="radio"
+                        name="benefited"
+                        value="Partial"
+                        onChange={handelChange("benefited")}
+                        checked={benefited === "Partial"}
+                      />
+                      Partial
+                    </label>
+                    <label className="mr-2">
+                      <input
+                        className="mr-2 leading-tight"
+                        type="radio"
+                        name="benefited"
+                        value="No"
+                        onChange={handelChange("benefited")}
+                        checked={benefited === "No"}
+                      />
+                      No
+                    </label>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block text-left text-gray-700 text-sm font-bold mb-2"
+                    htmlFor="gender"
+                  >
+                    Attendance
+                  </label>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      justifyContent: "flex-start",
+                      alignContent: "space-around",
+                    }}
+                  >
+                    <label className="mr-2">
+                      <input
+                        className="mr-2 leading-tight"
+                        type="radio"
+                        name="Attendance"
+                        value="true"
+                        onChange={handelChange("Attendance")}
+                        checked={Attendance === "true"}
+                      />
+                      Yes
+                    </label>
+                    <label className="mr-2">
+                      <input
+                        className="mr-2 leading-tight"
+                        type="radio"
+                        name="Attendance"
+                        value="false"
+                        onChange={handelChange("Attendance")}
+                        checked={Attendance === "false"}
+                      />
+                      No
+                    </label>
+                  </div>
+                </div>
+
                 <div className="mb-4">
                   <label
                     className="block text-left  text-gray-700 text-sm font-bold mb-2"
@@ -257,7 +367,7 @@ const AddPeople = () => {
                     placeholder="Age"
                     onChange={handelChange("age")}
                     value={age}
-                    
+
                   />
                 </div>
 
@@ -311,7 +421,7 @@ const AddPeople = () => {
                       <DatePicker
                         id="username"
                         label="Date Of Birth"
-                        value={values.dob}   
+                        value={values.dob}
                         onChange={handleDateChange("dob")}
                       />
                     </DemoContainer>
