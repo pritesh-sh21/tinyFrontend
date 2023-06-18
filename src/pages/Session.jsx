@@ -42,7 +42,7 @@ const Session = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const {token}=isAuthenticated();
+        const { token } = isAuthenticated();
         const response1 = await fetch(
           `http://localhost:9000/api/community/${id}`,
           {
@@ -64,10 +64,11 @@ const Session = () => {
 
         const data2 = await response2.json();
         console.log(data2);
+
         // setUserid(auth.user._id);
         const Userid = isAuthenticated().user._id;
         const User = isAuthenticated().user;
-        console.log(Userid);
+        // console.log(Userid);
 
 
         const postResponse = await fetch(
@@ -85,19 +86,21 @@ const Session = () => {
             // mode: 'no-cors'
           }
         ).then((response) => {
-            return response.json();
-          })
+          return response.json();
+        })
           .catch((err) => {
             console.log(err);
           });
 
-          
-        console.log(data2);
-        setSessionList(data2);
-        sessionList.push(data2);
-        console.log(sessionList);
-        console.log(sessions);
-        console.log(postResponse);
+        const updatedData = data2.map((obj) => {
+          // Adding the 'btnText' property to each object
+          const updatedobj = { ...obj};
+          updatedobj.date = new Date(updatedobj.date).toLocaleDateString('en-GB');
+          return updatedobj;
+        });
+        setSessionList(updatedData);
+        sessionList.push(updatedData);
+      
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -127,7 +130,7 @@ const Session = () => {
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
         <div className="flex justify-between">
           <Header category={header} title="Sessions" />
-          <div className="mt-3" onClick={() => {}}>
+          <div className="mt-3" onClick={() => { }}>
             <Link to={`/create_session/${id}`}>
               <Button
                 color="white"

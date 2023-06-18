@@ -89,10 +89,8 @@ const App = () => {
                 <Route exact path="/tinymiracle" element={(<TinyMiracle />)} />
 
                 {/* pages  */}
-                {auth.user.role === 1 && <Route exact path="/orders" element={<Orders />} />}
+                {/* {auth.user.role === 1 && <Route exact path="/orders" element={<Orders />} />} */}
 
-                <Route exact path="/employees" element={<Employees />} />
-                <Route exact path="/customers" element={<Customers />} />
 
                 {/* apps  */}
                 <Route exact path="/kanban" element={<Kanban />} />

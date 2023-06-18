@@ -3,7 +3,7 @@ import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, Context
 
 import { contextMenuItems, volListData, volListGrid } from './demo2';
 import { Header } from '../components';
-
+import { isAuthenticated } from "../auth/helper/index";
 
 
 const VolList = () => {
@@ -11,24 +11,32 @@ const VolList = () => {
   const editing = { allowDeleting: true, allowEditing: true };
   const [volunteerList, setvolunteerList] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:9000/api/user/all').then(response => {
-      response.json().then(posts => {
-          const updatedData = posts.map((obj) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:9000/api/user/all');
+        const posts = await response.json();
+
+        const updatedData = posts.map((obj) => {
           // Adding the 'btnText' property to each object
-           const updatedobj={ ...obj, btnText: "Block"}
-           updatedobj.date = new Date(updatedobj.createdAt).toLocaleDateString("en-GB");
-           updatedobj.sessionCount=updatedobj.organizedSessions.length;
-           return updatedobj;
+          const updatedobj = { ...obj, btnText: 'Block' };
+          updatedobj.date = new Date(updatedobj.createdAt).toLocaleDateString('en-GB');
+          updatedobj.sessionCount = updatedobj.organizedSessions.length;
+          return updatedobj;
         });
-
-        setvolunteerList(updatedData)
-        volunteerList.push(updatedData)
+        const Userid = isAuthenticated().user._id;
+        setvolunteerList(updatedData);
+        volunteerList.push(updatedData);
         console.log(volunteerList);
-      })
-    })
+      } catch (error) {
+        // Handle error
+        console.error(error);
+      }
+    };
 
-  }, [])
-  
+    fetchData();
+  }, []);
+
+
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Volunteers" />

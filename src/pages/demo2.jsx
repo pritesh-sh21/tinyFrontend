@@ -66,10 +66,20 @@ export const volReqButton = (props) => {
     );
 };
 export const makeAdminButton = (props) => {
+    const userid = props._id;
+   
     const [bg, setBg] = useState('#03c9d7');
     const [buttonText, setButtonText] = useState('Volunteer');
-
-    const handleClick = () => {
+    const handleClick = async () => {
+        const updatedobj={ ...props, role: 2}
+        await fetch(`http://localhost:9000/api/user/${userid}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(updatedobj),
+        })
         setBg('#46f249');
         setButtonText('Admin');
     };
@@ -181,7 +191,7 @@ export const volReqGrid = [
         width: "150",
         textAlign: "Center",
     },
-    
+
     {
         field: "Approve",
         headerText: "Approve",
@@ -216,13 +226,6 @@ export const volListGrid = [
         headerText: "Joining Date",
         width: "130",
         textAlign: "Center",
-    },
-    {
-        field: "Approve",
-        headerText: "Block",
-        width: "100",
-        textAlign: "Center",
-        template: volListButton,
     },
     {
         field: "adminText",

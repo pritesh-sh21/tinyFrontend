@@ -1,56 +1,56 @@
 import React from 'react';
 import './style.css'
 
-  import {signup} from "../../auth/helper/index"
-  import { Link } from 'react-router-dom';
-  import { useState } from 'react';
-
+import { signup } from "../../auth/helper/index"
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { redirect } from 'react-router-dom';
 const Signup = () => {
 
-    const [values, setValues] = useState({
-        name: "",
-        email: "",
-        password: "",
-        error: "",
-        success: false,
-      });
-    
-      // Destructure state values
-      const { name, email, password, error, success } = values;
-    
-      // Event handler for form inputs
-      const handelChange = (name) => (event) => {
-        setValues({ ...values, error: false, [name]: event.target.value });
-      };
-    
-      // Event handler for form submission
-      const onSubmit = (event) => {
-        event.preventDefault();
-        setValues({
-          ...values,
-          error: false,
-        });
-    
-        // Call signup method and handle success/error
-        signup({ name, email, password })
-          .then((data) => {
-            if (data.error) {
-              setValues({ ...values, error: data.error, success: false });
-            } else {
-              setValues({
-                ...values,
-                name: "",
-                email: "",
-                password: "",
-                error: "",
-                success: true,
-              });
-            }
-          })
-          .catch(console.log("Error in signup"));
-      };
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    error: "",
+    success: false,
+  });
 
-       // Function to render success message
+  // Destructure state values
+  const { name, email, password, error, success } = values;
+
+  // Event handler for form inputs
+  const handelChange = (name) => (event) => {
+    setValues({ ...values, error: false, [name]: event.target.value });
+  };
+
+  // Event handler for form submission
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setValues({
+      ...values,
+      error: false,
+    });
+
+    // Call signup method and handle success/error
+    signup({ name, email, password })
+      .then((data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error, success: false });
+        } else {
+          setValues({
+            ...values,
+            name: "",
+            email: "",
+            password: "",
+            error: "",
+            success: true,
+          });
+        }
+      })
+      .catch(console.log("Error in signup"));
+  };
+
+  // Function to render success message
   const successMessage = () => {
     return (
       <div className="row">
@@ -82,8 +82,8 @@ const Signup = () => {
     );
   };
 
-  const onClickHandle=()=>{
-    return <Redirect to="/signin" />;
+  const onClickHandle = () => {
+    return <redirect to="/signin" />;
   }
 
 
@@ -93,53 +93,53 @@ const Signup = () => {
 
   return (
     <>
-    <div className='showcase'>
-    <div className='video-container'>
-    <video src='bgVideo.mp4' autoPlay muted loop id='myVideo'>
+      <div className='showcase'>
+        <div className='video-container'>
+          <video src='bgVideo.mp4' autoPlay muted loop id='myVideo'>
 
-    </video>
+          </video>
 
-    </div>
-    </div>
+        </div>
+      </div>
 
-    <div className='login-box'>
+      <div className='login-box'>
         <h2>
-        {successMessage()}
-      {errorMessage()}
-            Signup
+          {successMessage()}
+          {errorMessage()}
+          Signup
         </h2>
         <form>
-            <div className='user-box'>
-            <input type='text' 
-            value={name} 
-            onChange={handelChange("name")}
-             required />
+          <div className='user-box'>
+            <input type='text'
+              value={name}
+              onChange={handelChange("name")}
+              required />
             <label>Name</label>
-                
-            </div>
-            <div className='user-box'>
-            <input type='email' 
-             value={email} 
-            onChange={handelChange("email")}
-             required />
-            <label>Email</label>
-                
-            </div>
 
-            <div className='user-box'>
-            <input type='password' 
-             value={password} 
-            onChange={handelChange("password")}
-             required />
+          </div>
+          <div className='user-box'>
+            <input type='email'
+              value={email}
+              onChange={handelChange("email")}
+              required />
+            <label>Email</label>
+
+          </div>
+
+          <div className='user-box'>
+            <input type='password'
+              value={password}
+              onChange={handelChange("password")}
+              required />
             <label>Password</label>
-                
-            </div>
-            <button type='submit' onClick={onSubmit} >
-                Signup
-            </button>
-            <p>Already Have an Account? <span onClick={onClickHandle}> SignIn </span></p>
+
+          </div>
+          <button type='submit' onClick={onSubmit} >
+            Signup
+          </button>
+          <p>Already Have an Account? <span onClick={onClickHandle}> SignIn </span></p>
         </form>
-    </div>
+      </div>
 
 
 
@@ -148,7 +148,7 @@ const Signup = () => {
 
 
     </>
-   
+
   )
 }
 

@@ -642,33 +642,12 @@ export const links = [
     title: "Community",
     links: [
       {
-        name: "orders",
-        icon: <AiOutlineShoppingCart />,
-        link: "orders",
-      },
-      {
-        name: "employees",
-        icon: <IoMdContacts />,
-        link: "employees",
-      },
-      {
         name: "Volunteers",
         icon: <RiContactsLine />,
         link: "vol_list",
       },
-
-      {
-        name: "customers",
-        icon: <RiContactsLine />,
-        link: "customers",
-      },
       {
         name: "Communities",
-        icon: <RiCommunityLine />,
-        link: "community",
-      },
-      {
-        name: "Community List",
         icon: <RiCommunityLine />,
         link: "community_list",
       },
@@ -695,45 +674,18 @@ export const links = [
       {
         name: "SignIn",
         icon: <BsCalendar4Event />,
-        link: "sign_in"
+        link: "signin"
       },
       {
-        name: "SignOut",
+        name: "SignUp",
         icon: <BsCalendar4Event />,
-        link: "sign_out"
-      }
-    ],
-  },
-  {
-    title: "People",
-    links: [
-      {
-        name: "AddPeople",
-        icon: <VscOrganization />,
-        link: "add_people",
-      },
-      {
-        name: "Session Details",
-        icon: <VscOrganization />,
-        link: "session_details",
-      },
-      {
-        name: "All People",
-        icon: <VscOrganization />,
-        link: "all_people",
-      },
-      {
-        name: "Create Session",
-        icon: <VscOrganization />,
-        link: "create_session",
+        link: "signup"
       },
       {
         name: "Requests",
         icon: <VscOrganization />,
         link: "vol_req",
       },
-
-
     ],
   },
   {
@@ -3496,16 +3448,16 @@ export const scheduleData = [
     Id: 1,
     Subject: "Explosion of Betelgeuse Star",
     Location: "Space Center USA",
-    StartTime: "2021-01-10T04:00:00.000Z",
-    EndTime: "2021-01-10T05:30:00.000Z",
+    StartTime: "2023-06-19T00:30:00.000Z",
+    EndTime: "2023-06-19T02:30:00.000Z",
     CategoryColor: "#1aaa55",
   },
   {
     Id: 2,
     Subject: "Thule Air Crash Report",
     Location: "Newyork City",
-    StartTime: "2021-01-11T06:30:00.000Z",
-    EndTime: "2021-01-11T08:30:00.000Z",
+    StartTime: "2021-01-11T18:30:00.000Z",
+    EndTime: "2021-01-11T19:30:00.000Z",
     CategoryColor: "#357cd2",
   },
   {

@@ -42,6 +42,7 @@ import { GrLocation } from "react-icons/gr";
 
 import { useState } from "react";
 export const peopleButton = (props) => {
+    console.log(props);
     const navigate = useNavigate();
     const id = props._id;
     // console.log(id);
@@ -64,19 +65,20 @@ export const peopleButton = (props) => {
     );
 };
 export const benefitButton = (props) => {
-    const {id}=useParams();
-    
-    const peopleID=props._id;
-    
+    const { id } = useParams();
+
     const [bg, setBg] = useState('#eb4034');
     const [buttonText, setButtonText] = useState('Benefited');
     const navigate = useNavigate();
     const handleClick = async () => {
-        props.sessions.push({id,benefit:true});
-        // const updatedobj=
-        // console.log(props.benefited);
-        // props.benefited="Yes";
-        await fetch(`http://localhost:9000/api/people/${peopleID}`, {
+        const peopleId = props._id;
+        props.sessions.push({
+            id: id,
+            benefit: true,
+            attended: true
+        })
+
+        await fetch(`http://localhost:9000/api/people/${peopleId}`, {
             method: "PUT",
             headers: {
                 Accept: "application/json",
