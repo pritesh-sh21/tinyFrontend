@@ -18,15 +18,15 @@ const VolList = () => {
 
         const updatedData = posts.map((obj) => {
           // Adding the 'btnText' property to each object
+          console.log(obj);
           const updatedobj = { ...obj, btnText: 'Block' };
           updatedobj.date = new Date(updatedobj.createdAt).toLocaleDateString('en-GB');
           updatedobj.sessionCount = updatedobj.organizedSessions.length;
           return updatedobj;
         });
+        const updatedobj2 = updatedData.filter(x => x.role === 0)
         const Userid = isAuthenticated().user._id;
-        setvolunteerList(updatedData);
-        volunteerList.push(updatedData);
-        console.log(volunteerList);
+        setvolunteerList(updatedobj2);
       } catch (error) {
         // Handle error
         console.error(error);

@@ -25,13 +25,15 @@ import VolList from './pages/VolList';
 import Signin from './pages/Users/Signin';
 import Signup from './pages/Users/Signup';
 import { isAuthenticated } from '../src/auth/helper/index';
+import UserDetailCard from './pages/UserDetailCard'
+import MyProfile from './pages/MyProfile'
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
   const auth = isAuthenticated();
 
   useEffect(() => {
-
+    console.log("sknsnj", auth);
     const currentThemeColor = localStorage.getItem('colorMode');
     const currentThemeMode = localStorage.getItem('themeMode');
     if (currentThemeColor && currentThemeMode) {
@@ -78,16 +80,21 @@ const App = () => {
             }
           >
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
-              <Navbar />
+           <Navbar /> 
+              
+              
             </div>
             <div>
               {themeSettings && (<ThemeSettings />)}
 
               <Routes>
                 {/* dashboard  */}
-                <Route exact path="/" element={(<TinyMiracle />)} />
-                <Route exact path="/tinymiracle" element={(<TinyMiracle />)} />
 
+                <Route exact path="/" element={(<TinyMiracle />)} />
+
+                <Route exact path="/tinymiracle" element={(<TinyMiracle />)} />
+                <Route exact path="/signin" element={<Signin />} />
+                <Route exact path="/signup" element={<Signup />} />
                 {/* pages  */}
                 {/* {auth.user.role === 1 && <Route exact path="/orders" element={<Orders />} />} */}
 
@@ -120,8 +127,8 @@ const App = () => {
                 <Route exact path="community/session_details/people/:id" element={<EditPeople />} />
                 <Route exact path="/vol_req" element={<VolReq />} />
                 <Route exact path="/vol_list" element={<VolList />} />
-                <Route exact path="/signin" element={<Signin />} />
-                <Route exact path="/signup" element={<Signup />} />
+                <Route exact path="/my_profile" element={<MyProfile />} />
+                <Route exact path="/user_profile" element={<UserDetailCard />} />
 
               </Routes>
             </div>

@@ -1,13 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { isAuthenticated } from '../auth/helper/index';
 
-import { links } from '../data/dummy';
+import { links } from '../data/sidedummy';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Sidebar = () => {
+  const [filteredLinks, setFilteredLinks] = useState(links);
+  const [role, setRole] = useState(0);
+  useEffect(() => {
+    const auth = isAuthenticated();
+    if (auth) {
+      setRole(auth.user.role)
+    }
+    console.log(role);
+    if (!auth) {
+      const filteredLink = links.filter(x => x.title === "Dashboard");
+      setFilteredLinks(filteredLink);
+    } else {
+      const modify = links.map(x => {
+        if (x.title === "Dashboard") {
+          const object = x.links.filter(y => y.name === "tinymiracle")
+          return { ...x, links: object }
+        }
+         if (role === 0) {
+          console.log("role",role)
+          const obj = x.links.filter(y => {
+            if (y.name === "Volunteers" || y.name === "Create" || y.name === "Requests")
+              return false;
+            return true;
+          })
+          return { ...x, links: obj }
+        }
+        return x;
+      })
+      setFilteredLinks(modify);
+    }
+  }, [role]);
+ console.log(role);
+  console.log(filteredLinks)
   const { currentColor, activeMenu, setActiveMenu, screenSize } = useStateContext();
 
   const handleCloseSideBar = () => {
@@ -25,7 +59,7 @@ const Sidebar = () => {
         <>
           <div className="flex justify-between items-center">
             <Link to="/" onClick={handleCloseSideBar} className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900">
-              <SiShopware /> <span>Tiny Miracle</span>
+              <SiShopware /> <span>Tiny Miracles</span>
             </Link>
             <TooltipComponent content="Menu" position="BottomCenter">
               <button
@@ -39,24 +73,24 @@ const Sidebar = () => {
             </TooltipComponent>
           </div>
           <div className="mt-10 ">
-            {links.map((item) => (
+            {filteredLinks.map((item) => (
               <div key={item.title}>
                 <p className="text-gray-400 dark:text-gray-400 m-3 mt-4 uppercase">
                   {item.title}
                 </p>
-                {item.links.map((link) => (
-                  
+                {item.links.map((x) => (
+
                   <NavLink
-                    to={`/${link.link}`}
-                    key={link.name}
+                    to={`/${x.link}`}
+                    key={x.name}
                     onClick={handleCloseSideBar}
                     style={({ isActive }) => ({
                       backgroundColor: isActive ? currentColor : '',
                     })}
                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                   >
-                    {link.icon}
-                    <span className="capitalize ">{link.name}</span>
+                    {x.icon}
+                    <span className="capitalize ">{x.name}</span>
                   </NavLink>
                 ))}
               </div>

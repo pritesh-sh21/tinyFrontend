@@ -25,7 +25,6 @@ import {
 } from "react-icons/bs";
 
 import { BsGraphUp, BsCalendar4Event } from "react-icons/bs";
-
 import { VscOrganization } from "react-icons/vsc";
 import { BiColorFill } from "react-icons/bi";
 import { IoMdContacts } from "react-icons/io";
@@ -626,140 +625,141 @@ export const employeesGrid = [
   },
 ];
 
-export const links = [
-  {
-    title: "Dashboard",
-    links: [
-      {
-        name: "tinymiracle",
-        icon: <VscOrganization />,
-        link: "tinymiracle",
-      },
-    ],
-  },
+// export const links = [
+//   {
+//     title: "Dashboard",
+//     links: [
+//       {
+//         name: "tinymiracle",
+//         icon: <VscOrganization />,
+//         link: "tinymiracle",
+//       },
+//       {
+//         name: "SignIn",
+//         icon: <BsCalendar4Event />,
+//         link: "signin"
+//       },
+//       {
+//         name: "SignUp",
+//         icon: <BsCalendar4Event />,
+//         link: "signup"
+//       },
+//     ],
+//   },
+  
+//   {
+//     title: "Community",
+//     links: [
+//       {
+//         name: "Volunteers",
+//         icon: <RiContactsLine />,
+//         link: "vol_list",
+//       },
+//       {
+//         name: "Communities",
+//         icon: <RiCommunityLine />,
+//         link: "community_list",
+//       },
+//       {
+//         name: "Community Details",
+//         icon: <RiCommunityLine />,
+//         link: "community_details",
+//       },
+//       {
+//         name: "Create",
+//         icon: <IoCreateOutline />,
+//         link: "create_community",
+//       },
+//       {
+//         name: "Status",
+//         icon: <BsGraphUp />,
+//         link: "community_status", // import {BsGraphUp,BsCalendar4Event } from react-icons/bs
+//       },
+//       {
+//         name: "Sessions",
+//         icon: <BsCalendar4Event />,
+//         link: "community_sessions",
+//       },
+      
+//       {
+//         name: "Requests",
+//         icon: <VscOrganization />,
+//         link: "vol_req",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Apps",
+//     links: [
+//       {
+//         name: "calendar",
+//         icon: <AiOutlineCalendar />,
+//         link: "calendar",
+//       },
+//       {
+//         name: "kanban",
+//         icon: <BsKanban />,
+//         link: "kanban",
+//       },
+//       {
+//         name: "editor",
+//         icon: <FiEdit />,
+//         link: "editor",
+//       },
+//       {
+//         name: "color-picker",
+//         icon: <BiColorFill />,
+//         link: "color-picker",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Charts",
+//     links: [
+//       {
+//         name: "line",
+//         icon: <AiOutlineStock />,
+//         link: "line",
+//       },
+//       {
+//         name: "area",
+//         icon: <AiOutlineAreaChart />,
+//         link: "area",
+//       },
 
-  {
-    title: "Community",
-    links: [
-      {
-        name: "Volunteers",
-        icon: <RiContactsLine />,
-        link: "vol_list",
-      },
-      {
-        name: "Communities",
-        icon: <RiCommunityLine />,
-        link: "community_list",
-      },
-      {
-        name: "Community Details",
-        icon: <RiCommunityLine />,
-        link: "community_details",
-      },
-      {
-        name: "Create",
-        icon: <IoCreateOutline />,
-        link: "create_community",
-      },
-      {
-        name: "Status",
-        icon: <BsGraphUp />,
-        link: "community_status", // import {BsGraphUp,BsCalendar4Event } from react-icons/bs
-      },
-      {
-        name: "Sessions",
-        icon: <BsCalendar4Event />,
-        link: "community_sessions",
-      },
-      {
-        name: "SignIn",
-        icon: <BsCalendar4Event />,
-        link: "signin"
-      },
-      {
-        name: "SignUp",
-        icon: <BsCalendar4Event />,
-        link: "signup"
-      },
-      {
-        name: "Requests",
-        icon: <VscOrganization />,
-        link: "vol_req",
-      },
-    ],
-  },
-  {
-    title: "Apps",
-    links: [
-      {
-        name: "calendar",
-        icon: <AiOutlineCalendar />,
-        link: "calendar",
-      },
-      {
-        name: "kanban",
-        icon: <BsKanban />,
-        link: "kanban",
-      },
-      {
-        name: "editor",
-        icon: <FiEdit />,
-        link: "editor",
-      },
-      {
-        name: "color-picker",
-        icon: <BiColorFill />,
-        link: "color-picker",
-      },
-    ],
-  },
-  {
-    title: "Charts",
-    links: [
-      {
-        name: "line",
-        icon: <AiOutlineStock />,
-        link: "line",
-      },
-      {
-        name: "area",
-        icon: <AiOutlineAreaChart />,
-        link: "area",
-      },
-
-      {
-        name: "bar",
-        icon: <AiOutlineBarChart />,
-        link: "bar",
-      },
-      {
-        name: "pie",
-        icon: <FiPieChart />,
-        link: "pie",
-      },
-      {
-        name: "financial",
-        icon: <RiStockLine />,
-        link: "financial",
-      },
-      {
-        name: "color-mapping",
-        icon: <BsBarChart />,
-        link: "color-mapping",
-      },
-      {
-        name: "pyramid",
-        icon: <GiLouvrePyramid />,
-        link: "pyramid",
-      },
-      {
-        name: "stacked",
-        icon: <AiOutlineBarChart />,
-        link: "stacked",
-      },
-    ],
-  },
-];
+//       {
+//         name: "bar",
+//         icon: <AiOutlineBarChart />,
+//         link: "bar",
+//       },
+//       {
+//         name: "pie",
+//         icon: <FiPieChart />,
+//         link: "pie",
+//       },
+//       {
+//         name: "financial",
+//         icon: <RiStockLine />,
+//         link: "financial",
+//       },
+//       {
+//         name: "color-mapping",
+//         icon: <BsBarChart />,
+//         link: "color-mapping",
+//       },
+//       {
+//         name: "pyramid",
+//         icon: <GiLouvrePyramid />,
+//         link: "pyramid",
+//       },
+//       {
+//         name: "stacked",
+//         icon: <AiOutlineBarChart />,
+//         link: "stacked",
+//       },
+//     ],
+//   },
+// ];
 
 export const cartData = [
   {
@@ -1035,26 +1035,28 @@ export const themeColors = [
 
 export const userProfileData = [
   {
-    icon: <BsCurrencyDollar />,
-    title: "My Profile",
-    desc: "Account Settings",
-    iconColor: "#03C9D7",
-    iconBg: "#E5FAFB",
-  },
-  {
     icon: <BsShield />,
-    title: "My Inbox",
-    desc: "Messages & Emails",
+    title: "My Profile",
+    desc: "View Profile",
     iconColor: "rgb(0, 194, 146)",
     iconBg: "rgb(235, 250, 242)",
+    Link:"MyProfile"
   },
-  {
-    icon: <FiCreditCard />,
-    title: "My Tasks",
-    desc: "To-do and Daily Tasks",
-    iconColor: "rgb(255, 244, 229)",
-    iconBg: "rgb(254, 201, 15)",
-  },
+  
+  // {
+  //   icon: <BsShield />,
+  //   title: "My Inbox",
+  //   desc: "Messages & Emails",
+  //   iconColor: "rgb(0, 194, 146)",
+  //   iconBg: "rgb(235, 250, 242)",
+  // },
+  // {
+  //   icon: <FiCreditCard />,
+  //   title: "My Tasks",
+  //   desc: "To-do and Daily Tasks",
+  //   iconColor: "rgb(255, 244, 229)",
+  //   iconBg: "rgb(254, 201, 15)",
+  // },
 ];
 
 export const ordersGrid = [

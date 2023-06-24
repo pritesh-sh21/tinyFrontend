@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Header } from "../components";
 import { Link } from 'react-router-dom';
@@ -7,12 +7,19 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { GoPencil } from "react-icons/go";
 
 import product9 from "../data/product9.jpg";
-
+import { isAuthenticated } from '../auth/helper/index';
 import { Button } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const CommInfo = (item) => {
     const { currentColor, currentMode } = useStateContext();
+    const [role, setRole] = useState()
+    useEffect(() => {
+        const authi = isAuthenticated();
+        if (authi) {
+            setRole(authi.user.role)
+        }
+    }, [])
 
     const clickHandler = () => {
 
@@ -24,14 +31,15 @@ const CommInfo = (item) => {
                 <p className="text-xl font-semibold">{item.name}</p>
 
                 <div className="flex  column ">
-                    <Link to={`/community/${item._id}`}>
+                    {role == 2 && <Link to={`/community/${item._id}`}>
                         <button
                             type="button"
                             className="text-xl font-semibold text-gray-500 m-2"
                         >
                             <GoPencil />
                         </button>
-                    </Link>
+                    </Link>}
+
                     {/* <button
                         type="button"
                         className="text-xl font-semibold text-gray-500 m-2"

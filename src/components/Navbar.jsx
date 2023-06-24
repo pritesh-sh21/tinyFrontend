@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
 import { BsChatLeft } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { isAuthenticated } from '../auth/helper/index';
 
 import avatar from '../data/avatar.jpg';
 import { Cart, Chat, Notification, UserProfile } from '.';
@@ -28,6 +29,8 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 );
 
 const Navbar = () => {
+  const [name, setName] = useState("");
+  const [authi, setAuth] = useState();
   const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize } = useStateContext();
 
   useEffect(() => {
@@ -39,14 +42,44 @@ const Navbar = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  function capitalizeName(name) {
+    var nameParts = name.split(" ");
+    var firstName = nameParts[0].charAt(0).toUpperCase() + nameParts[0].slice(1);
+    return firstName;
+  }
 
   useEffect(() => {
-    if (screenSize <= 900) {
-      setActiveMenu(false);
-    } else {
-      setActiveMenu(true);
+    const auth = isAuthenticated();
+    setAuth(auth);
+    var UserId = "";
+    if (auth)
+      UserId = auth.user._id;
+    const fetchData = async () => {
+      try {
+        if (screenSize <= 900) {
+          setActiveMenu(false);
+        } else {
+          setActiveMenu(true);
+        }
+        if (auth) {
+          const response = await fetch(`http://localhost:9000/api/user/${UserId}`);
+          const posts = await response.json();
+
+          setName(capitalizeName(posts.name))
+          if (posts.role === 2)
+            setProfile("Admin")
+          else
+            setProfile("Volunteer")
+          setEmail(posts.email)
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [screenSize]);
+    fetchData();
+  }, [screenSize])
+
+
 
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
 
@@ -54,9 +87,12 @@ const Navbar = () => {
     <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative">
 
       <NavButton title="Menu" customFunc={handleActiveMenu} color={currentColor} icon={<AiOutlineMenu />} />
-      <div className="flex">
-        <NavButton title="Cart" customFunc={() => handleClick('cart')} color={currentColor} icon={<FiShoppingCart />} />
-        <NavButton title="Chat" dotColor="#03C9D7" customFunc={() => handleClick('chat')} color={currentColor} icon={<BsChatLeft />} />
+      <span className="text-gray-400 font-bold text-center text-2xl mr-573 mt-0.3">
+                Tiny Miracles
+      </span>
+      {authi && <div className="flex">
+        {/* <NavButton title="Cart" customFunc={() => handleClick('cart')} color={currentColor} icon={<FiShoppingCart />} /> */}
+        {/* <NavButton title="Chat" dotColor="#03C9D7" customFunc={() => handleClick('chat')} color={currentColor} icon={<BsChatLeft />} /> */}
         <NavButton title="Notification" dotColor="rgb(254, 201, 15)" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} />
         <TooltipComponent content="Profile" position="BottomCenter">
           <div
@@ -69,9 +105,9 @@ const Navbar = () => {
               alt="user-profile"
             />
             <p>
-              <span className="text-gray-400 text-14">Hi,</span>{' '}
-              <span className="text-gray-400 font-bold ml-1 text-14">
-                Michael
+              <span className="text-gray-400 text-lg">Hi,</span>{' '}
+              <span className="text-gray-400 font-bold ml-1 text-lg ">
+                {name}
               </span>
             </p>
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
@@ -82,7 +118,8 @@ const Navbar = () => {
         {isClicked.chat && (<Chat />)}
         {isClicked.notification && (<Notification />)}
         {isClicked.userProfile && (<UserProfile />)}
-      </div>
+      </div>}
+
     </div>
   );
 };
