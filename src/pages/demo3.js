@@ -138,14 +138,14 @@ export const peopleGrid = [
         width: "120",
         color: '#4ff075'
     },
-    {
-        headerText: "Attendance",
-        field: "Attendance",
-        textAlign: "Center",
-        width: "120",
-        color: '#4932c9',
-        template: peopleButton,
-    },
+    // {
+    //     headerText: "Attendance",
+    //     field: "Attendance",
+    //     textAlign: "Center",
+    //     width: "120",
+    //     color: '#4932c9',
+    //     template: peopleButton,
+    // },
     {
         headerText: "Benefited",
         field: "benefited",
