@@ -54,7 +54,7 @@ const Signup = () => {
   const successMessage = () => {
     return (
       <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="col-md-6 offset-sm-3 text-center  text-slate-200">
           <div
             className="alert alert-success"
             style={{ display: success ? "" : "none" }}
@@ -70,7 +70,7 @@ const Signup = () => {
   const errorMessage = () => {
     return (
       <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="col-md-6 offset-sm-3 text-center  text-slate-200">
           <div
             className="alert alert-danger"
             style={{ display: error ? "" : "none" }}
@@ -137,7 +137,7 @@ const Signup = () => {
           <button type='submit' onClick={onSubmit} >
             Signup
           </button>
-          <p>Already Have an Account? <span onClick={onClickHandle}> SignIn </span></p>
+          <p>Already Have an Account? <Link to="/signin">Signin here</Link></p>
         </form>
       </div>
 

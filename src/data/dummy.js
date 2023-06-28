@@ -646,7 +646,7 @@ export const employeesGrid = [
 //       },
 //     ],
 //   },
-  
+
 //   {
 //     title: "Community",
 //     links: [
@@ -680,7 +680,7 @@ export const employeesGrid = [
 //         icon: <BsCalendar4Event />,
 //         link: "community_sessions",
 //       },
-      
+
 //       {
 //         name: "Requests",
 //         icon: <VscOrganization />,
@@ -1009,7 +1009,7 @@ export const medicalproBranding = {
 export const themeColors = [
   {
     name: "blue-theme",
-    color: "#1A97F5",
+    color: "#48BEFF",
   },
   {
     name: "green-theme",
@@ -1017,20 +1017,35 @@ export const themeColors = [
   },
   {
     name: "purple-theme",
-    color: "#7352FF",
+    color: "#a29bfe",
   },
   {
     name: "red-theme",
-    color: "#FF5C8E",
+    color: "#FF6F91",
   },
   {
-    name: "indigo-theme",
-    color: "#1E4DB7",
+    name: "light-green-theme",
+    color: "#55efc4",
   },
   {
-    color: "#FB9678",
+    color: "#FEA47F",
     name: "orange-theme",
+  }, 
+  {
+    color: "#f8a5c2",
+    name: "pink-theme",
+  },{
+    name: "fuchsia-theme",
+    color: "#B33771",
   },
+  {
+    color: "#ffc94c",
+    name: "yellow-theme",
+  }, 
+  {
+    color: "#596275",
+    name: "grey-theme",
+  }
 ];
 
 export const userProfileData = [
@@ -1040,9 +1055,9 @@ export const userProfileData = [
     desc: "View Profile",
     iconColor: "rgb(0, 194, 146)",
     iconBg: "rgb(235, 250, 242)",
-    Link:"MyProfile"
+    Link: "MyProfile"
   },
-  
+
   // {
   //   icon: <BsShield />,
   //   title: "My Inbox",
@@ -3746,7 +3761,7 @@ export const pieChartData = [
   { x: "Children", y: 18, text: "18%" },
   { x: "Young", y: 8, text: "8%" },
   { x: "Adult", y: 15, text: "15%" },
-  { x: "Senior Citizens", y: 11, text: "11%" },
+  { x: "Senior Citizens", y: 11, text: "70%" },
 ];
 
 export const contextMenuItems = [

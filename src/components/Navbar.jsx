@@ -84,10 +84,10 @@ const Navbar = () => {
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
 
   return (
-    <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative">
+    <div className="flex justify-between p-2 md:ml-6 md:-mr-2 relative">
 
       <NavButton title="Menu" customFunc={handleActiveMenu} color={currentColor} icon={<AiOutlineMenu />} />
-      <span className="text-gray-400 font-bold text-center text-2xl mr-573 mt-0.3">
+      <span className="text-gray-400 font-bold text-center text-2xl md:mr-2">
                 Tiny Miracles
       </span>
       {authi && <div className="flex">

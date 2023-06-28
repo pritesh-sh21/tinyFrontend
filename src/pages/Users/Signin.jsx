@@ -3,10 +3,11 @@ import './style.css'
 import { signin, isAuthenticated, authenticate } from "../../auth/helper/index"
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
+import { useStateContext } from '../../contexts/ContextProvider'
 
 const Signin = () => {
-
+  const { currentColor } = useStateContext();
+  console.log(currentColor)
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
@@ -59,8 +60,8 @@ const Signin = () => {
   const loadingMessage = () => {
     return (
       loading && (
-        <div className="row">
-          <div className="col-md-6 offset-sm-3 text-left">
+        <div className="row ">
+          <div className="col-md-6 offset-sm-3 text-center  text-slate-200">
             <div className="alert alert-info">
               <h2>Loading...</h2>
             </div>
@@ -74,7 +75,7 @@ const Signin = () => {
   const errorMessage = () => {
     return (
       <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="col-md-6 offset-sm-3 text-center text-slate-200">
           <div
             className="alert alert-danger"
             style={{ display: error ? "" : "none" }}
@@ -88,16 +89,16 @@ const Signin = () => {
 
   return (
     <>
-      <div className='showcase'>
+      <div className='showcase' >
         <div className='video-container'>
-          <video src='bgVideo.mp4' autoPlay muted loop id='myVideo'>
+          {/* <video src='bgVideo.mp4' autoPlay muted loop id='myVideo'> */}
 
-          </video>
+          {/* </video> */}
 
         </div>
       </div>
 
-      <div className='login-box'>
+      <div className='login-box '  >
         <h2>
           {loadingMessage()}
           {errorMessage()}
@@ -129,7 +130,7 @@ const Signin = () => {
           <button type='submit' onClick={onSubmit}>
             Signin
           </button>
-
+          <p>Need an account? <Link to="/signup">Signup here</Link></p>
         </form>
         {performRedirect()}
       </div>
