@@ -227,7 +227,7 @@ export const barPrimaryYAxis = {
   majorGridLines: { width: 0 },
   majorTickLines: { width: 0 },
   lineStyle: { width: 0 },
-  labelStyle: { color: "transparent" },
+  labelStyle: { color: "gray" },
 };
 
 /*
@@ -412,20 +412,20 @@ export const barCustomSeries = [
       },
     },
   },
-  // {
-  //   dataSource: barChartData[3],
-  //   xName: 'x',
-  //   yName: 'y',
-  //   name: 'Financially',
-  //   type: 'Column',
-  //   marker: {
-  //     dataLabel: {
-  //       visible: true,
-  //       position: 'Top',
-  //       font: { fontWeight: '600', color: '#ffffff' },
-  //     },
-  //   },
-  // }
+  {
+    dataSource: barChartData[3],
+    xName: 'x',
+    yName: 'y',
+    name: 'Financially',
+    type: 'Column',
+    marker: {
+      dataLabel: {
+        visible: true,
+        position: 'Top',
+        font: { fontWeight: '600', color: '#ffffff' },
+      },
+    },
+  }
 ];
 export const colorMappingData = [
   [

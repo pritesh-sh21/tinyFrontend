@@ -66,11 +66,6 @@ const Navbar = () => {
           const posts = await response.json();
 
           setName(capitalizeName(posts.name))
-          if (posts.role === 2)
-            setProfile("Admin")
-          else
-            setProfile("Volunteer")
-          setEmail(posts.email)
         }
       } catch (error) {
         console.log(error);

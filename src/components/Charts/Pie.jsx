@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, AccumulationLegend, PieSeries, AccumulationDataLabel, Inject, AccumulationTooltip } from '@syncfusion/ej2-react-charts';
 
 import { useStateContext } from '../../contexts/ContextProvider';
 
 const Doughnut = ({ id, data, legendVisiblity, height }) => {
   const { currentMode } = useStateContext();
+ 
 
+  console.log("hello");
+  console.log(data)
   return (
     <AccumulationChartComponent
       id={id}
@@ -17,7 +20,7 @@ const Doughnut = ({ id, data, legendVisiblity, height }) => {
       <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
       <AccumulationSeriesCollectionDirective>
         <AccumulationSeriesDirective
-          name="Sale"
+          name="Benefited"
           dataSource={data}
           xName="x"
           yName="y"
