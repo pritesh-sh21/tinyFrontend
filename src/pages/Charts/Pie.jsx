@@ -74,6 +74,7 @@ const Pie = () => {
         <div className="w-full">
           <PieChart id="chart-pie" data={pied} legendVisiblity height="full" />
         </div>
+        
       </div>
     </>)
 };

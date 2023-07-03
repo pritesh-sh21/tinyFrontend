@@ -29,7 +29,7 @@ export const sessionsGrid = [
     },
     {
         field: "description",
-        headerText: "Volunteer",
+        headerText: "Description",
         textAlign: "Center",
         editType: "numericedit",
         width: "150",

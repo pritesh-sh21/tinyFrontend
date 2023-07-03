@@ -412,20 +412,7 @@ export const barCustomSeries = [
       },
     },
   },
-  {
-    dataSource: barChartData[3],
-    xName: 'x',
-    yName: 'y',
-    name: 'Financially',
-    type: 'Column',
-    marker: {
-      dataLabel: {
-        visible: true,
-        position: 'Top',
-        font: { fontWeight: '600', color: '#ffffff' },
-      },
-    },
-  }
+  
 ];
 export const colorMappingData = [
   [
