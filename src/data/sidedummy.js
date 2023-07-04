@@ -86,11 +86,11 @@ export const links = [
           icon: <BsGraphUp />,
           link: "community_status", // import {BsGraphUp,BsCalendar4Event } from react-icons/bs
         },
-        {
-          name: "Sessions",
-          icon: <BsCalendar4Event />,
-          link: "community_sessions",
-        },
+        // {
+        //   name: "Sessions",
+        //   icon: <BsCalendar4Event />,
+        //   link: "community_sessions",
+        // },
   
         {
           name: "Requests",

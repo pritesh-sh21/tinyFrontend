@@ -13,12 +13,14 @@ const Pie = () => {
       try {
         const response = await fetch('http://localhost:9000/api/session/all');
         const data = await response.json();
+        // console.log(data);
         const sessInfo = await Promise.all(data.map(async x => {
+          
           const response = await fetch(`http://localhost:9000/api/session_details/${x}`);
           const data = await response.json();
           return data;
         }));
-  
+
         const promises = sessInfo.map(async (session) => {
           const { category, attendees } = session;
           const benefitedPeople = await Promise.all(attendees.map(async (x) => {
@@ -74,7 +76,7 @@ const Pie = () => {
         <div className="w-full">
           <PieChart id="chart-pie" data={pied} legendVisiblity height="full" />
         </div>
-        
+
       </div>
     </>)
 };
