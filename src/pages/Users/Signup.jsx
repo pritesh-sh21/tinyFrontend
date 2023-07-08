@@ -5,8 +5,10 @@ import { signup } from "../../auth/helper/index"
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { redirect } from 'react-router-dom';
-const Signup = () => {
+import { useStateContext } from '../../contexts/ContextProvider'
 
+const Signup = () => {
+  const {currentColor}= useStateContext();
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -102,7 +104,7 @@ const Signup = () => {
         </div>
       </div>
 
-      <div className='login-box'>
+      <div className='login-box' >
         <h2>
           {successMessage()}
           {errorMessage()}

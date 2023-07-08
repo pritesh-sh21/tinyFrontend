@@ -17,6 +17,8 @@ const AddPeople = () => {
   const [redirect, setRedirect] = useState(false);
   const { id } = useParams();
 
+  
+
   const createPeople = async (people) => {
     console.log(people);
     return await fetch(`http://localhost:9000/api/people/create/${id}`, {

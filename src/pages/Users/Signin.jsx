@@ -2,13 +2,23 @@ import React from 'react';
 import './style.css'
 import { signin, isAuthenticated, authenticate } from "../../auth/helper/index"
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useStateContext } from '../../contexts/ContextProvider'
 
 const Signin = () => {
-  const { currentColor } = useStateContext();
-  console.log(currentColor)
+ 
+  
+  const { currentColor, setColor } = useStateContext();
+  // const [col, setcol] = useState(currentColor);
+  setColor(currentColor)
+
   const navigate = useNavigate();
+
+  // Rest of your code...
+
+ console.log("this",currentColor)
+  
+  
 
   const [values, setValues] = useState({
     email: "",
@@ -98,7 +108,8 @@ const Signin = () => {
         </div>
       </div>
 
-      <div className='login-box '  >
+      <div className='login-box' >
+
         <h2>
           {loadingMessage()}
           {errorMessage()}
